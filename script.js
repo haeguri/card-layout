@@ -11,74 +11,108 @@ if(cardSet.width.indexOf('px') !== -1 ) {
     cardSet._width = parseInt(cardSet.width.substr(0, cardSet.width.indexOf('px')), 10);
     cardSet._unit = 'px';
 } else {
-    console.log('잘못된 넓이.');
+    console.log('잘못된 세팅.');
 }
 
-var cardNumPerRow = parseInt(elemCardContainer.offsetWidth/cardSet._width, 10);
-var elemCardCss = getComputedCssStyle(elemCardList[0]);
+// var cardNumPerRow = parseInt(elemCardContainer.offsetWidth/cardSet._width, 10);
+var cardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
+var elemCardCss = getCssStyle(elemCardList[0]);
 var marginLeft = parseInt(elemCardCss.marginLeft.substr(0, elemCardCss.marginLeft.indexOf('px')), 10);
 var marginBottom = parseInt(elemCardCss.marginBottom.substr(0, elemCardCss.marginBottom.indexOf('px')), 10);
 
-// console.log('container\'s with is ', elemCardContainer.offsetWidth);
-// console.log('한 행에 올 수 있는 카드의 개수.', cardNumPerRow);
+alignCards();
 
-alignCardList();
+window.addEventListener("resize", function() {
+    var changedCardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
 
-function getComputedCssStyle(elem) {
-    return elem.currentStyle || window.getComputedStyle(elem);
-}
+    if(changedCardNumPerRow !== cardNumPerRow) {
+        cardNumPerRow = changedCardNumPerRow;
+        console.log('resizing', cardNumPerRow);
+        alignCardsOnResize();
+    }
+});
 
-function alignCardList() {
+function alignCards() {
+    var elemCard, elemCss,
+        changedLeftVal, changedTopVal,
+        changedColumn;
+
     for(var i = 0; i < elemCardList.length; i++) {
-        var elemCard = elemCardList[i],
-            col = i % cardNumPerRow,
-            beforeLeftVal = parseInt(elemCard.style.left, 10),
-            beforeTopVal = parseInt(elemCard.style.top, 10),
-            afterLeftVal, afterTopVal,
-            topElemHeight,
-            translateX, translateY;
-
-        afterLeftVal = (col * marginLeft) + (col * cardSet._width);
+        elemCard = elemCardList[i];
+        elemCss = getCssStyle(elemCard);
 
         if(i >= cardNumPerRow) {
-            topElemHeight = (marginBottom) + elemCardList[i-cardNumPerRow].offsetTop + elemCardList[i-cardNumPerRow].offsetHeight;
-            // elemCard.style.top = topElemHeight + cardSet._unit;
-            afterTopVal = topElemHeight;
+            changedTopVal = marginBottom + elemCardList[i-cardNumPerRow].offsetTop + elemCardList[i-cardNumPerRow].offsetHeight;;
         } else {
-            afterTopVal = 0;
+            changedTopVal = 0;
         }
 
-        // translateX = parseInt(beforeLeft, 10) - parseInt(elemCard.style.left, 10);
-        // translateY = parseInt(beforeTop, 10) - parseInt(elemCard.style.top, 10);
-        translateX = beforeLeftVal - afterLeftVal;
-        translateY = beforeTopVal - afterTopVal;
-
-
+        changedColumn = i % cardNumPerRow;
+        changedLeftVal = (changedColumn * marginLeft) + (changedColumn * cardSet._width);
 
         elemCard.style.position = 'absolute';
-        elemCard.style.width = cardSet._width + cardSet._unit;
-        elemCard.style.left = afterLeftVal + 'px';
-        elemCard.style.top = afterTopVal + 'px';
-
-
-        // elemCard.style.transitionProperty = 'transform';
-        // elemCard.style.transitionDuration = '0.4s';
-        // elemCard.style.transform = 'translate('+translateX + ', '+translateY+')';
-
-        // transition-property: transform;
-        // transition-duration: 0.4s;
-        // transform: translate(20px, 20px);
-        // elemCard.style.transitionProperty = 'transform';
-        // elemCard.style.transitionDuration = '0.4s';
-        // elemCard.style.transform = 'translate('+elemCard.style.left + ', '+elemCard.style.top+')';
+        elemCard.style.width = cardSet.width;
+        elemCard.style.left = changedLeftVal + 'px';
+        elemCard.style.top = changedTopVal + 'px';
     }
 }
 
-window.addEventListener("resize", function(e) {
-    // var width = e.target.innerWidth;
-    // var height = e.target.innerHeight;
-    cardNumPerRow = parseInt(elemCardContainer.offsetWidth/cardSet._width, 10);
-    alignCardList();
+function alignCardsOnResize() {
+    var elemCard, elemCss,
+        beforeLeftVal, beforeTopVal,
+        changedLeftVal, changedTopVal = 0,
+        changedRow, changedColumn,
+        translateX, translateY,
+        changedPosList = [];
 
-    console.log('resizing', cardNumPerRow);
-});
+    changedPosList.push([0, 0]);
+
+    for(var i = 1; i < elemCardList.length; i++) {
+        elemCard = elemCardList[i];
+        elemCss = getCssStyle(elemCard);
+
+        beforeLeftVal = parseInt(elemCss.left, 10);
+        beforeTopVal = parseInt(elemCss.top, 10);
+
+        changedRow = parseInt(i / cardNumPerRow, 10);
+        changedColumn = i % cardNumPerRow;
+
+        if(i >= cardNumPerRow) {
+            changedTopVal = marginBottom + changedPosList[i-cardNumPerRow][0] + elemCardList[i-cardNumPerRow].offsetHeight;
+        } else {
+            changedTopVal = 0;
+        }
+
+        changedLeftVal = (changedColumn * marginLeft) + (changedColumn * cardSet._width);
+
+        changedPosList.push([changedTopVal, changedLeftVal]);
+
+        translateX = changedLeftVal - beforeLeftVal;
+        translateY = changedTopVal - beforeTopVal;
+
+        if(translateX !== 0 || translateY !== 0) {
+            elemCard.style.transitionProperty = 'transform';
+            elemCard.style.transitionDuration = '0.4s';
+            elemCard.style.transform = 'translate(' + translateX + 'px' + ',' + translateY + 'px' + ')';
+
+            (function (elemCard, changedLeftVal, changedTopVal) {
+                setTimeout(function () {
+                    elemCard.style.transitionProperty = elemCard.style.transitionDuration = elemCard.style.transform = '';
+                    elemCard.style.left = changedLeftVal + 'px';
+                    elemCard.style.top = changedTopVal + 'px';
+                }, 400)
+            }(elemCard, changedLeftVal, changedTopVal));
+        }
+    }
+}
+
+
+function getCssStyle(elem) {
+    return elem.currentStyle || window.getComputedStyle(elem);
+}
+
+function getCardNumPerRow(conWidth, width) {
+    var num = parseInt(conWidth/width, 10);
+
+    return num < 1 ? 1 : num;
+}
