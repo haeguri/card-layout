@@ -20,8 +20,6 @@ var elemCardCss = getCssStyle(elemCardList[0]);
 var marginLeft = parseInt(elemCardCss.marginLeft.substr(0, elemCardCss.marginLeft.indexOf('px')), 10);
 var marginBottom = parseInt(elemCardCss.marginBottom.substr(0, elemCardCss.marginBottom.indexOf('px')), 10);
 
-alignCards();
-
 window.addEventListener("resize", function() {
     var changedCardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
 
@@ -31,6 +29,8 @@ window.addEventListener("resize", function() {
         alignCardsOnResize();
     }
 });
+
+alignCards();
 
 function alignCards() {
     var elemCard, elemCss,
@@ -95,13 +95,17 @@ function alignCardsOnResize() {
             elemCard.style.transitionDuration = '0.4s';
             elemCard.style.transform = 'translate(' + translateX + 'px' + ',' + translateY + 'px' + ')';
 
-            (function (elemCard, changedLeftVal, changedTopVal) {
+            (function () {
+                var _elemCard = elemCard,
+                    _changedLeftVal = changedLeftVal,
+                    _changedTopVal = changedTopVal;
+
                 setTimeout(function () {
-                    elemCard.style.transitionProperty = elemCard.style.transitionDuration = elemCard.style.transform = '';
-                    elemCard.style.left = changedLeftVal + 'px';
-                    elemCard.style.top = changedTopVal + 'px';
+                    _elemCard.style.transitionProperty = _elemCard.style.transitionDuration = _elemCard.style.transform = '';
+                    _elemCard.style.left = _changedLeftVal + 'px';
+                    _elemCard.style.top = _changedTopVal + 'px';
                 }, 400)
-            }(elemCard, changedLeftVal, changedTopVal));
+            }());
         }
     }
 }
@@ -112,7 +116,7 @@ function getCssStyle(elem) {
 }
 
 function getCardNumPerRow(conWidth, width) {
-    var num = parseInt(conWidth/width, 10);
+    var num = parseInt(conWidth/(width), 10);
 
     return num < 1 ? 1 : num;
 }
