@@ -4,7 +4,8 @@ var elemCardList = document.getElementsByClassName('card');
 var elemCardContainer = document.getElementsByClassName('card-container')[0];
 
 var cardSet = {
-    'width':'300px'
+    'width':'300px',
+    'isAligning':false
 };
 
 if(cardSet.width.indexOf('px') !== -1 ) {
@@ -14,7 +15,6 @@ if(cardSet.width.indexOf('px') !== -1 ) {
     console.log('잘못된 세팅.');
 }
 
-// var cardNumPerRow = parseInt(elemCardContainer.offsetWidth/cardSet._width, 10);
 var cardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
 var elemCardCss = getCssStyle(elemCardList[0]);
 var marginLeft = parseInt(elemCardCss.marginLeft.substr(0, elemCardCss.marginLeft.indexOf('px')), 10);
@@ -23,10 +23,11 @@ var marginBottom = parseInt(elemCardCss.marginBottom.substr(0, elemCardCss.margi
 window.addEventListener("resize", function() {
     var changedCardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
 
-    if(changedCardNumPerRow !== cardNumPerRow) {
+    if(changedCardNumPerRow !== cardNumPerRow && !cardSet.isAligning) {
+        cardSet.isAligning = true;
         cardNumPerRow = changedCardNumPerRow;
-        console.log('resizing', cardNumPerRow);
         alignCardsOnResize();
+        console.log('resize complete'); 
     }
 });
 
@@ -98,12 +99,17 @@ function alignCardsOnResize() {
             (function () {
                 var _elemCard = elemCard,
                     _changedLeftVal = changedLeftVal,
-                    _changedTopVal = changedTopVal;
+                    _changedTopVal = changedTopVal,
+                    _isLastCard = i-1 === elemCardList.length;
 
                 setTimeout(function () {
                     _elemCard.style.transitionProperty = _elemCard.style.transitionDuration = _elemCard.style.transform = '';
                     _elemCard.style.left = _changedLeftVal + 'px';
                     _elemCard.style.top = _changedTopVal + 'px';
+
+                    if(_isLastCard) {
+                        cardSet.isAligning = false;
+                    }
                 }, 400)
             }());
         }
