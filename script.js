@@ -5,7 +5,9 @@ var elemCardContainer = document.getElementsByClassName('card-container')[0];
 
 var cardSet = {
     'width':'300px',
-    'isAligning':false
+    // 'isAligning':false
+    'alignSTime':0,
+    'alignETime':0
 };
 
 if(cardSet.width.indexOf('px') !== -1 ) {
@@ -20,15 +22,27 @@ var elemCardCss = getCssStyle(elemCardList[0]);
 var marginLeft = parseInt(elemCardCss.marginLeft.substr(0, elemCardCss.marginLeft.indexOf('px')), 10);
 var marginBottom = parseInt(elemCardCss.marginBottom.substr(0, elemCardCss.marginBottom.indexOf('px')), 10);
 
+
+var _timeout;
+
 window.addEventListener("resize", function() {
     var changedCardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
 
-    if(changedCardNumPerRow !== cardNumPerRow && !cardSet.isAligning) {
-        cardSet.isAligning = true;
-        cardNumPerRow = changedCardNumPerRow;
-        alignCardsOnResize();
-        console.log('resize complete'); 
+    if(changedCardNumPerRow !== cardNumPerRow) {
+        if(_timeout === undefined) {
+            _timeout = setTimeout(function() {
+                changedCardNumPerRow = getCardNumPerRow(elemCardContainer.offsetWidth, cardSet._width);
+
+                if(changedCardNumPerRow !== cardNumPerRow) {
+                    cardNumPerRow = changedCardNumPerRow;
+                    alignCardsOnResize();
+                    _timeout = undefined;
+                }
+            }, 200);
+        }
     }
+
+
 });
 
 alignCards();
