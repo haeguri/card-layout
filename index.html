@@ -9,26 +9,26 @@
 		}
 
 		html, body {
-			height:100%;
+			/*height:100%;*/
 		}
 
 		.card-container {
-			counter-reset: order 0;
-			position: relative;
-			border: solid 1px gray;
-		}
+			position: relative; /* 필수!! */
 
+			counter-reset: order 0; /* 임시로 */
+
+		}
 
 		.card {
-			border: solid 1px blue;
-			padding: 10px;
-			height:auto;
-			counter-increment: order;
-			margin-left: 20px;
-			margin-bottom: 20px;
-			background-color: tomato;
-			float: left;
+			margin-left: 20px;  /* 필수!! */
+			margin-bottom: 20px;  /* 필수!! */
+
+			padding: 10px; /* 임시로 */
+			counter-increment: order; /* 임시로 */
+			background-color: tomato; /* 임시로 */
 		}
+
+		/* 임시로. */
 
 		.card:before {
 			display: inline-block;
@@ -87,6 +87,7 @@
 			</p>
 		</div>
 	</div>
+	<script src="./card-layout.js"></script>
 	<script src="./script.js"></script>
 </body>
 </html>
