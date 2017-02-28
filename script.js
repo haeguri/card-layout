@@ -1,5 +1,5 @@
 CardLayout.init({
-    'width':'300px',
     'container':'card-container',
-    'card':'card'
+    'card':'card',
+    'width':'300px'
 });

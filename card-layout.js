@@ -33,10 +33,12 @@ var CardLayout;
             } // TODO : % width
 
             _transitionDelay = options.transDelay || 400;
+
             _elemContainer = document.getElementsByClassName(containerClassName)[0];
             _elemCardList = document.getElementsByClassName(cardClassName);
 
             _cardNumPerRow = getCardNumPerRow(_elemContainer.offsetWidth, _cardWidth);
+
             cardCssStyle = getCssStyle(_elemCardList[0]);
 
             _gapColumn = parseInt(cardCssStyle.marginLeft.substr(0, cardCssStyle.marginLeft.indexOf('px')), 10);
@@ -64,6 +66,21 @@ var CardLayout;
         }
     };
 
+    function getChangedTopValue(cardIdx, elemCardList, cardPositionList) {
+        if(cardIdx < _cardNumPerRow) return 0;
+
+        var offsetTop, offsetHeight;
+
+        if(cardPositionList !== undefined)
+            offsetTop = cardPositionList[cardIdx - _cardNumPerRow][0];
+        else
+            offsetTop = elemCardList[cardIdx - _cardNumPerRow].offsetTop;
+
+        offsetHeight = elemCardList[cardIdx-  _cardNumPerRow].offsetHeight;
+
+        return _gapRow + offsetTop + offsetHeight;
+    }
+
     function alignCards() {
         var elemCard,
             changedLeftVal, changedTopVal,
@@ -71,13 +88,8 @@ var CardLayout;
 
         for(var i = 0; i < _elemCardList.length; i++) {
             elemCard = _elemCardList[i];
-            // elemCss = getCssStyle(elemCard);
 
-            if(i >= _cardNumPerRow) {
-                changedTopVal = _gapRow + _elemCardList[i - _cardNumPerRow].offsetTop + _elemCardList[i - _cardNumPerRow].offsetHeight;
-            } else {
-                changedTopVal = 0;
-            }
+            changedTopVal = getChangedTopValue(i, _elemCardList);
 
             changedColumn = i % _cardNumPerRow;
             changedLeftVal = (changedColumn * _gapColumn) + (changedColumn * _cardWidth);
@@ -91,10 +103,12 @@ var CardLayout;
 
     function alignCardsOnResize() {
         var changedPosList = [],
+
             elemCard, elemCss,
-            beforeLeftVal, beforeTopVal,
             changedLeftVal, changedTopVal,
             changedColumn,
+
+            beforeLeftVal, beforeTopVal,
             translateX, translateY;
 
         changedPosList.push([0, 0]);
@@ -106,11 +120,7 @@ var CardLayout;
             beforeLeftVal = parseInt(elemCss.left, 10);
             beforeTopVal = parseInt(elemCss.top, 10);
 
-            if(i >= _cardNumPerRow) {
-                changedTopVal = _gapRow + changedPosList[i - _cardNumPerRow][0] + _elemCardList[i - _cardNumPerRow].offsetHeight;
-            } else {
-                changedTopVal = 0;
-            }
+            changedTopVal = getChangedTopValue(i, _elemCardList, changedPosList);
 
             changedColumn = i % _cardNumPerRow;
             changedLeftVal = (changedColumn * _gapColumn) + (changedColumn * _cardWidth);
