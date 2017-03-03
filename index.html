@@ -16,7 +16,7 @@
 			position: relative; /* 필수!! */
 
 			counter-reset: order 0; /* 임시로 */
-
+			background-color: skyblue;
 		}
 
 		.card {
@@ -36,57 +36,96 @@
 			background-color: red;
 			content: counter(order)
 		}
+
+		nav	{
+			padding: 20px;
+			height:100px;
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+
+		.main-container {
+			margin-left: auto;
+			margin-right:auto;
+			width: 100%;
+		}
+		
+		@media (min-width: 900px) {
+			.main-container {
+				width:900px;
+			}
+		}
+
+
+
+		footer {
+			background-color: gray;
+			width:100%;
+			height:50px;
+			padding:20px;
+			color: white;
+		}
 	</style>
 </head>
 <body>
-	<div class="card-container">
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae officia quas tempore? Debitis facere id in iusto laborum quo recusandae. A accusamus ad dolor ea error, harum incidunt neque odit quae quis. Amet assumenda error, exercitationem ipsum obcaecati optio quis tenetur! Culpa cumque doloremque et facere facilis, molestiae nobis officiis recusandae ut voluptates. Ab, nobis, quia? Dolores earum inventore iusto laborum praesentium. Ad aperiam asperiores aspernatur doloremque expedita facere fugit harum illo impedit ipsa ipsum iusto labore laborum minus molestias nemo nihil, provident qui quos recusandae saepe sapiente sed sequi totam ullam vel vero. Cupiditate dicta facere nesciunt! Dolorum, enim!
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto deleniti eveniet fuga, nemo sequi totam velit? Accusantium ad alias aliquam aut cupiditate deserunt distinctio ex excepturi id in ipsa itaque iusto laudantium, magni nesciunt nisi odio officiis quam ratione repudiandae saepe sapiente, velit vitae voluptatem voluptates. Alias dicta dolor excepturi exercitationem iste libero magni nemo nesciunt numquam officiis perferendis quam quasi quo, tempora, velit. Alias animi beatae blanditiis, consectetur cupiditate ducimus ex excepturi ipsa iste non praesentium temporibus tenetur!
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae culpa eius facere facilis hic magni, minima neque nihil odio officia omnis perspiciatis porro, quia reprehenderit sapiente soluta tenetur voluptate. Aliquid aperiam assumenda cupiditate deserunt dolor dolorem eveniet, facere fugit incidunt itaque laboriosam maiores minus modi nesciunt officiis, quia soluta vel.
-			</p>
-		</div>
+	<nav>
+		<h1>NAV BAR</h1>
+	</nav>
+	<div class="main-container">
+		<div class="card-container">
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae officia quas tempore? Debitis facere id in iusto laborum quo recusandae. A accusamus ad dolor ea error, harum incidunt neque odit quae quis. Amet assumenda error, exercitationem ipsum obcaecati optio quis tenetur! Culpa cumque doloremque et facere facilis, molestiae nobis officiis recusandae ut voluptates. Ab, nobis, quia? Dolores earum inventore iusto laborum praesentium. Ad aperiam asperiores aspernatur doloremque expedita facere fugit harum illo impedit ipsa ipsum iusto labore laborum minus molestias nemo nihil, provident qui quos recusandae saepe sapiente sed sequi totam ullam vel vero. Cupiditate dicta facere nesciunt! Dolorum, enim!
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto deleniti eveniet fuga, nemo sequi totam velit? Accusantium ad alias aliquam aut cupiditate deserunt distinctio ex excepturi id in ipsa itaque iusto laudantium, magni nesciunt nisi odio officiis quam ratione repudiandae saepe sapiente, velit vitae voluptatem voluptates. Alias dicta dolor excepturi exercitationem iste libero magni nemo nesciunt numquam officiis perferendis quam quasi quo, tempora, velit. Alias animi beatae blanditiis, consectetur cupiditate ducimus ex excepturi ipsa iste non praesentium temporibus tenetur!
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae culpa eius facere facilis hic magni, minima neque nihil odio officia omnis perspiciatis porro, quia reprehenderit sapiente soluta tenetur voluptate. Aliquid aperiam assumenda cupiditate deserunt dolor dolorem eveniet, facere fugit incidunt itaque laboriosam maiores minus modi nesciunt officiis, quia soluta vel.
+				</p>
+			</div>
 
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, nobis, perspiciatis. Ab doloremque ea earum ex excepturi expedita, facere in ipsam libero nobis non, odio officia quidem rem repellendus saepe sint, suscipit unde. Ad at iste nam nisi nulla praesentium, qui repellat voluptate? Alias aliquam aperiam atque commodi dicta dolores dolorum eveniet ex excepturi id, illum iusto, maiores minima molestiae natus nemo quasi quia ratione reiciendis rerum tempore velit voluptatum?
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cupiditate dolores eaque explicabo id, incidunt ipsum libero minima officia omnis quasi quidem rerum sapiente sunt unde vel velit veniam voluptate. A adipisci consequuntur corporis culpa, delectus dignissimos dolore excepturi expedita fugit illo in incidunt ipsa, ipsam maiores nemo nihil numquam officiis pariatur placeat porro vel vitae, voluptatibus. Beatae delectus dolor ducimus fugiat id itaque iure laudantium libero maiores nisi nulla odio provident quas quasi, quidem ratione repellat repellendus reprehenderit rerum soluta tempore temporibus, veniam? Dignissimos illo incidunt iusto laudantium voluptatem.
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
-			</p>
-		</div>
-		<div class="card">
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
-			</p>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, nobis, perspiciatis. Ab doloremque ea earum ex excepturi expedita, facere in ipsam libero nobis non, odio officia quidem rem repellendus saepe sint, suscipit unde. Ad at iste nam nisi nulla praesentium, qui repellat voluptate? Alias aliquam aperiam atque commodi dicta dolores dolorum eveniet ex excepturi id, illum iusto, maiores minima molestiae natus nemo quasi quia ratione reiciendis rerum tempore velit voluptatum?
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cupiditate dolores eaque explicabo id, incidunt ipsum libero minima officia omnis quasi quidem rerum sapiente sunt unde vel velit veniam voluptate. A adipisci consequuntur corporis culpa, delectus dignissimos dolore excepturi expedita fugit illo in incidunt ipsa, ipsam maiores nemo nihil numquam officiis pariatur placeat porro vel vitae, voluptatibus. Beatae delectus dolor ducimus fugiat id itaque iure laudantium libero maiores nisi nulla odio provident quas quasi, quidem ratione repellat repellendus reprehenderit rerum soluta tempore temporibus, veniam? Dignissimos illo incidunt iusto laudantium voluptatem.
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
+				</p>
+			</div>
+			<div class="card">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur distinctio dolores earum ipsa magnam odit quis quo repudiandae ullam voluptas? Accusamus animi iure mollitia repellendus totam vitae, voluptas. Aliquid aspernatur corporis deserunt, doloremque dolores esse est, et illum ipsum minima perferendis, possimus quidem quod tenetur voluptatum! Animi nemo nostrum ullam. Consectetur est magni minima praesentium quasi quidem quis rerum suscipit tempora! Adipisci at distinctio expedita, fuga fugiat laboriosam quia rerum sit veritatis? Atque cupiditate excepturi molestias nostrum reprehenderit voluptatum! Dolorum, fugit impedit quam sit ut voluptas voluptates? Aperiam beatae corporis, culpa debitis dolorum eaque enim expedita id in iure labore laboriosam laudantium nobis nostrum pariatur possimus quia quos sint. Adipisci alias animi commodi cum cupiditate, deleniti ea excepturi explicabo hic id illo impedit labore laudantium libero, nesciunt nisi placeat quae quisquam quod quos reiciendis similique totam voluptate. Aspernatur assumenda dolor esse maxime mollitia, nostrum, possimus quo, quod reprehenderit totam voluptatum.
+				</p>
+			</div>
 		</div>
 	</div>
+
+	<footer>
+		FOOTER
+	</footer>
 	<script src="./card-layout.js"></script>
 	<script src="./script.js"></script>
 </body>

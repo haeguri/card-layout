@@ -5,6 +5,8 @@ var CardLayout;
 
     var _elemContainer,
         _elemCardList,
+        _containerWidth,
+        _containerHeight,
         _cardWidthUnit,
         _cardWidth,
         _gapColumn,
@@ -30,7 +32,7 @@ var CardLayout;
             if(cardWidthData.indexOf('px') !== -1) {
                 _cardWidth = parseInt(cardWidthData.substr(0, cardWidthData.indexOf('px')), 10);
                 _cardWidthUnit = 'px';
-            } // TODO : % width
+            } // TODO : %, vw 단위도 대응
 
             _transitionDelay = options.transDelay || 400;
 
@@ -71,10 +73,11 @@ var CardLayout;
 
         var offsetTop, offsetHeight;
 
-        if(cardPositionList !== undefined)
+        if(cardPositionList !== undefined) {
             offsetTop = cardPositionList[cardIdx - _cardNumPerRow][0];
-        else
+        } else {
             offsetTop = elemCardList[cardIdx - _cardNumPerRow].offsetTop;
+        }
 
         offsetHeight = elemCardList[cardIdx-  _cardNumPerRow].offsetHeight;
 
